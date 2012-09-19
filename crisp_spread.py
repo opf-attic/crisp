@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 import gspread
 import ConfigParser
+from datetime import datetime
+from unshorten import unshorten_url
 
 config = ConfigParser.ConfigParser()
 config.read("config.ini")

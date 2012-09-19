@@ -1,21 +1,30 @@
 import tweepy
+import ConfigParser
+import sys
+
+# Force unicode behaviour:
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 
 # == OAuth Authentication ==
+config = ConfigParser.ConfigParser()
+config.read("config.ini")
+
 #
 # This mode of authentication is the new preferred way
 # of authenticating with Twitter.
 
 # The consumer keys can be found on your application's Details
 # page located at https://dev.twitter.com/apps (under "OAuth settings")
-consumer_key="ZQss1qDPr7KGs1zHXGd77w"
-consumer_secret="2sGShNrgMKbCqSiAkvlrj7xNwW8eTfArm40ywxiT3To"
+consumer_key=config.get("twitter", "consumer_key")
+consumer_secret=config.get("twitter", "consumer_secret")
 
 # The access tokens can be found on your applications's Details
 # page located at https://dev.twitter.com/apps (located 
 # under "Your access token")
-access_token="561459521-3xN03j1PEJvVhF9BFUKBOY4cAuJU7a74rnRFToo"
-access_token_secret="DytWB5VC28wB1vIFS1QrhoMcjkXi04m3ef3z5bv7b0"
+access_token=config.get("twitter", "access_token")
+access_token_secret=config.get("twitter", "access_token_secret")
 
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
@@ -27,7 +36,7 @@ api = tweepy.API(auth)
 print api.me().name
 
 for status in api.mentions():
-    print "NAME", status.user.screen_name
+    print "@{}".format(status.user.screen_name)
     for property, value in vars(status).iteritems():
         print property, ": ", value
 
