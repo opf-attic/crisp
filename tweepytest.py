@@ -36,7 +36,8 @@ api = tweepy.API(auth)
 print api.me().name
 
 for status in api.mentions():
-    print "@{}".format(status.user.screen_name)
+    user = "@{}".format(status.user.screen_name)
+    print status.id, user, status.text
     for property, value in vars(status).iteritems():
         print property, ": ", value
 
