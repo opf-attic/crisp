@@ -1,15 +1,10 @@
-#!/usr/bin/env python2.7
-import tweetstream
-import re
-import urllib2
-import ConfigParser
-import simplejson
-import sys
-from datetime import datetime
-from unshorten import unshorten_url
+#!/usr/bin/env python
 import gspread
 import ConfigParser
 import tweepy
+import sys
+from datetime import datetime
+from unshorten import unshorten_url
 
 # Force unicode behaviour:
 reload(sys)
