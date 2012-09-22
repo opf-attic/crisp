@@ -36,7 +36,6 @@ erow = len(first_col) + 1
 max_id = 0
 
 for tid in first_col:
-    print tid
     if tid == None or tid == "ID":
         continue
     if int(tid) > max_id:
