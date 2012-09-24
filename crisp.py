@@ -3,6 +3,7 @@ import gspread
 import ConfigParser
 import tweepy
 import sys
+import re
 from datetime import datetime
 from unshorten import unshorten_url
 
@@ -57,7 +58,7 @@ for status in reversed(api.mentions()):
     if status.id <= max_id:
         print "Skipping", status.id, max_id - status.id
         continue
-    user = "@{}".format(status.user.screen_name)
+    user = "@{0}".format(status.user.screen_name)
     tags = re.findall(r'#(\S+)', status.text)
     urls = re.findall(r'(https?://\S+)', status.text)
     #Fri, 20 Jul 2012 08:17:09 +0000
